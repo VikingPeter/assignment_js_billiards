@@ -1,0 +1,16 @@
+.table {
+
+	top: 50px;
+	left: 50px;
+	height: 400px;
+	width: 400px;
+	background-color: green;
+
+}
+
+.ball {
+
+	background-color: black;
+	border-radius: 500px;
+	position: absolute;
+}
