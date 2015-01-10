@@ -34,9 +34,9 @@ BB.MainModule = (function() {
 		// clear last frame of balls
 		$('.ball').remove();
 		// for each ball render that ball on the table
-		for (var i = 0; i < balls.length; i++) {
-			balls[i].render();
-		}
+		balls.forEach(function(ball){
+			ball.render();
+		});
 	}
 
 	// tic the balls!
@@ -61,18 +61,22 @@ BB.MainModule = (function() {
 		if (balls.length > 1) {
 
 				if(BB.TableModule.checkCollision(balls[0], balls[1]) == true){
+					balls[0].velocity.dx = (balls[1].velocity.dx)
+					balls[1].velocity.dx = -(balls[0].velocity.dx)
+					// balls[0].velocity.dy = balls[1].velocity.dy
+					// balls[1].velocity.dy = balls[0].velocity.dy
 					console.log("that worked")// change the vector
 				}
 
 		}
 
 		if (BB.TableModule.checkOutOfBounds(balls[0]) == true) {
-			balls[0].increment.x *= -1;
+			balls[0].velocity.dx *= -1;
 			console.log("SHAZAM WAS THE WORST")
 		}
 
 		if (BB.TableModule.checkOutOfBounds(balls[1]) == true) {
-			balls[1].increment.x *= -1;
+			balls[1].velocity.dx *= -1;
 			console.log("SHAZAM WAS THE WORST")
 		}
 
@@ -80,8 +84,8 @@ BB.MainModule = (function() {
 			// if (BB.TableModule.checkOutOfBounds(ball) == true) {
 			// 	// WTF was I thinking?
 			// 	// Oh, this is a placeholder for suresies.
-			// 	balls[0].increment.x *= -1
-			// 	balls[i].increment.y *= -1
+			// 	balls[0].velocity.x *= -1
+			// 	balls[i].velocity.y *= -1
 			// 	console.log("Collision!")
 			// }
 

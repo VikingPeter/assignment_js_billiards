@@ -3,7 +3,7 @@
 // attributes it has.
 // The attributes included should be:
 // radius
-// increment
+// velocity
 // initial position
 // use animate <-- (?) to set the future properties of the ball
 // in the example below, the +=50 9s actually the end result
@@ -16,19 +16,18 @@ BB= BB || {}
 BB.BilliardBallModule = (function() {
 
 	var _initRadius = 50;
-	var _initPosition = [50,50];
 
-	//  increment is the distance traveled for each step in a vector
+	//  velocity is the distance traveled for each step in a vector
 	//  composed of x and y.
-	var _initIncrement = { x: 1, y: 0}; // units are pixels
+	var _initVelocity = { dx: 1, dy: 0}; // units are pixels
 
 	// create a ball object
 	// this is the constructor
 	function BilliardBall(index) {
-		this.increment = {x:1,y:0};
+		this.velocity = {dx:1,dy:0};
 		this.radius = _initRadius;
 		this.x = (Math.floor(Math.random()*300) + 8);
-		this.y = (Math.floor(Math.random()*300) + 8) + (index * this.radius);
+		this.y = (Math.floor(Math.random()*300) + 8);
 		this.index = index;
 	}
 
@@ -44,8 +43,8 @@ BB.BilliardBallModule = (function() {
 	};
 
 	BilliardBall.prototype.tic = function() {
-		this.x += this.increment.x; // this is NOT hard coded increment
-		this.y += this.increment.y;
+		this.x += this.velocity.dx; // this is NOT hard coded velocity
+		this.y += this.velocity.dy;
 	}
 
 	return {
